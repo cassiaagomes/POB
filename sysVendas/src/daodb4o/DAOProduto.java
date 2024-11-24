@@ -5,6 +5,12 @@ import com.db4o.query.Query;
 import modelo.Produto;
 
 public class DAOProduto extends DAO<Produto>{
+
+	public void create (Produto obj) {
+		int novocodprod = super.gerarId(Produto.class);
+		obj.setCodproduto(novocodprod);
+		manager.store(obj);
+	}
 	
 	public Produto readByCodProduto (int codProduto) {
 		Query q = manager.query();
